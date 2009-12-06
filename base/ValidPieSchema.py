@@ -14,17 +14,17 @@ from ValidPieErrorSchema import ValidPieErrorSchema
 class ValidPieSchema(ValidPieBase):
     def __init__(self, options = {}, messages = {}):
         self.__fields = {}
-        self.__preValidPie = None;
-        self.__postValidPie = None;
+        self.__preValidPie = None
+        self.__postValidPie = None
         self.__errorSchema = ValidPieErrorSchema(self)
-        self.__cleanedValues = {};
-        ValidPieBase.__init__(self, options, messages);
+        self.__cleanedValues = {}
+        ValidPieBase.__init__(self, options, messages)
 
 
     def setValidPies(self, validators = None):
         if isinstance(validators, dict):
           for name, validator in validators.iteritems():
-            self.__fields[name] = validator;
+            self.__fields[name] = validator
         elif validators is not None:
           raise InvalidArgumentException('ValidPieSchema constructor takes an dict of ValidPieBase objects')
 
@@ -38,9 +38,9 @@ class ValidPieSchema(ValidPieBase):
            Available error codes:
              extra_fields
         """
-        self.addOption('allow_extra_fields', False);
-        self.addOption('filter_extra_fields', True);
-        self.addMessage('extra_fields', 'Unexpected extra field named "%(field)s".');
+        self.addOption('allow_extra_fields', False)
+        self.addOption('filter_extra_fields', True)
+        self.addMessage('extra_fields', 'Unexpected extra field named "%(field)s".')
 
         self.setUp(self.getOptions(), self.getMessages())
 
@@ -61,11 +61,11 @@ class ValidPieSchema(ValidPieBase):
 
     def getPreValidPie(self):
       """Returns preValidPie"""
-      return self.__preValidPie;
+      return self.__preValidPie
 
     def getErrors(self):
       """returns all errors"""
-      return self.__errorSchema.getErrors();
+      return self.__errorSchema.getErrors()
 
     def getError(self, fieldName):
       """see ValidPieErrorSchema#getNamedError"""
@@ -80,27 +80,27 @@ class ValidPieSchema(ValidPieBase):
 
     def getPostValidPie(self):
       """Returns postValidPie"""
-      return self.__postValidPie;
+      return self.__postValidPie
 
     def preClean(self, values):
       """Cleans the input values. This method is the first validator executed by doClean()"""
-      validator = self.getPreValidPie();
+      validator = self.getPreValidPie()
 
       if validator is None:
-        return None;
-      validator.clean(values);
+        return None
+      validator.clean(values)
 
     def getFields(self):
         """Returns an dict of fields."""
-        return self.__fields;
+        return self.__fields
 
     def postClean(self, values):
       """Cleans the input values. This method is the last validator executed by doClean()"""
-      validator = self.getPostValidPie();
+      validator = self.getPostValidPie()
 
       if validator is None:
-        return None;
-      validator.clean(values);
+        return None
+      validator.clean(values)
 
     def isValid(self):
       return False if self.__errorSchema.count() > 0 else True
@@ -114,7 +114,7 @@ class ValidPieSchema(ValidPieBase):
       return self.__cleanedValues
 
     def getErrorSchema(self):
-      return self.__errorSchema;
+      return self.__errorSchema
 
     def doClean(self, values = None):
       """validate given values with mapped validators"""
@@ -123,8 +123,8 @@ class ValidPieSchema(ValidPieBase):
       if not isinstance(values, (dict)):
           raise InvalidArgumentException('You must pass an dict parameter to the clean() method')
 
-      clean  = {};
-      unused = copy.copy(self.getFields());
+      clean  = {}
+      unused = copy.copy(self.getFields())
 
       try:
         self.preClean(values)
@@ -140,7 +140,7 @@ class ValidPieSchema(ValidPieBase):
             self.__errorSchema.addError(ValidPieError(self, 'extra_fields', {'field': name}))
           elif not self.getOption('filter_extra_fields'):
             self.__cleanedValues[name] = value
-          continue;
+          continue
         else:
           del unused[name]
 
@@ -149,21 +149,21 @@ class ValidPieSchema(ValidPieBase):
           self.__cleanedValues[name] = self.__fields[name].clean(value)
 
         except ValidPieError, e:
-          self.__cleanedValues[name] = None;
+          self.__cleanedValues[name] = None
           self.__errorSchema.addError(e, name)
 
       # are non given values required?
       try:
         for name in unused.iteritems():
-          pass;
-          #self.__cleanedValues[name] = self.__fields[name].clean(None);
+          pass
+          #self.__cleanedValues[name] = self.__fields[name].clean(None)
       except ValidPieError, e:
-          self.__cleanedValues[name] = None;
+          self.__cleanedValues[name] = None
           self.__errorSchema.addError(e, name)
 
       """ post validator"""
       try:
-        self.__cleanedValues = self.postClean(self.__cleanedValues);
+        self.__cleanedValues = self.postClean(self.__cleanedValues)
       except ValidPieErrorSchema, e:
         self.__errorSchema.addErrors(e)
       except ValidPieError, e:

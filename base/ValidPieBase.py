@@ -9,30 +9,30 @@ from ValidPieError import ValidPieError
 
 class ValidPieBase(object):
     def __init__(self, options = {}, messages = {}):
-        self.requiredOptions = [];
+        self.requiredOptions = []
         self.__options = {
           'required': True,
           'empty_value': None,
           'trim' : False
-        };
+        }
 
         self.__messages = {
           'required': 'required',
           'invalid' : 'invalid'
-        };
+        }
 
         self.__defaultMessages = {}
         self.__defaultOptions = {}
 
         self.configure(options, messages)
 
-        self.setDefaultOptions(self.getOptions());
-        self.setDefaultMessages(self.getMessages());
+        self.setDefaultOptions(self.getOptions())
+        self.setDefaultMessages(self.getMessages())
 
         if len(self.getRequiredOptions()) > 0:
           if len(options) == 0:
             raise InvalidArgumentException('%s requires the following option: "%s"' % (self.__class__.__name__, ', '.join(self.getRequiredOptions())))
-          invalidOptions = [];
+          invalidOptions = []
           for item in options:
               if item not in self.getRequiredOptions():
                   invalidOptions.append(item)
@@ -42,7 +42,7 @@ class ValidPieBase(object):
 
 
         if len(self.getOptions()) > 0:
-            invalidOptions = [];
+            invalidOptions = []
             for item in options:
                 if item not in self.getOptions().keys() and item not in self.getRequiredOptions():
                     invalidOptions.append(item)
@@ -53,7 +53,7 @@ class ValidPieBase(object):
             invalidMessages = []
             for item in messages:
                 if item not in self.getMessages():
-                  invalidMessages.append(item);
+                  invalidMessages.append(item)
             if len(invalidMessages) > 0:
               raise InvalidArgumentException('%s does not support the following error codes "%s"' % (self.__class__.__name__, ', '.join(invalidMessages)))
 
@@ -69,7 +69,7 @@ class ValidPieBase(object):
 
     def getDefaultMessages(self):
         """Returns default messages for all possible error codes."""
-        return self.__defaultMessages;
+        return self.__defaultMessages
 
     def setDefaultOptions(self, options):
         """Sets default option values."""
@@ -85,7 +85,7 @@ class ValidPieBase(object):
 
     def setOptions(self, options):
         """Changes all options."""
-        self.__options = options;
+        self.__options = options
 
     def getOptions(self):
         """Returns all options."""
@@ -93,7 +93,7 @@ class ValidPieBase(object):
 
     def getOption(self, name):
         """Gets an option value."""
-        return self.__options[name] if self.__options.has_key(name) else None;
+        return self.__options[name] if self.__options.has_key(name) else None
 
     def addOption(self, option, value = None):
         """Adds a new option value with a default value."""
@@ -108,13 +108,13 @@ class ValidPieBase(object):
 
     def hasOption(self, name):
         """Returns True if the option exists."""
-        return self.getOptions().has_key(name);
+        return self.getOptions().has_key(name)
 
     def setMessage(self, name, message):
         """Changes an error message given the error code."""
         if name not in self.__messages:
             raise InvalidArgumentException('%s does not support the following error code: "%s"' %  (self.__class__.__name__, name))
-        self.addMessage(name, message);
+        self.addMessage(name, message)
 
     def addMessage(self, name, message):
         """Adds a new error code with a default error message."""
@@ -130,7 +130,7 @@ class ValidPieBase(object):
 
     def getMessage(self, name):
         """Returns an error message given an error code."""
-        return self.__messages[name] if self.__messages.has_key(name) else None;
+        return self.__messages[name] if self.__messages.has_key(name) else None
 
 
     def getRequiredOptions(self):
@@ -143,7 +143,7 @@ class ValidPieBase(object):
 
     def getRequiredOption(self, name):
         """Gets a required option."""
-        return name if name in self.requiredOptions else None;
+        return name if name in self.requiredOptions else None
 
     def setInvalidMessage(self, message):
         """Sets the default invalid message"""
@@ -166,7 +166,7 @@ class ValidPieBase(object):
         return self.getOption('empty_value')
 
     def getErrorCodes(self):
-        return self.getDefaultMessages().keys();
+        return self.getDefaultMessages().keys()
 
     def __getMessagesWithoutDefaults(self):
         """Returns all error messages with non default values."""
@@ -193,12 +193,12 @@ class ValidPieBase(object):
         clean = value
 
         if isinstance(value, (str, unicode)) and self.getOption('trim'):
-          clean = value.strip();
+          clean = value.strip()
 
         # value empty?
         if self.isEmpty(value):
           if self.getOption('required'):
-            raise ValidPieError(self, 'required');
+            raise ValidPieError(self, 'required')
           return self.getEmptyValue()
 
-        return self.doClean(clean);
+        return self.doClean(clean)

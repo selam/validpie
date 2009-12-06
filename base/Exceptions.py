@@ -3,9 +3,9 @@
 
 class InvalidArgumentException(Exception):
     def __init__(self, message):
-      self.message = message;
+      self.message = message
 
     def getMessage(self):
-        return self.message;
+        return self.message
 
 __all__=[InvalidArgumentException]

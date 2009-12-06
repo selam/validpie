@@ -88,11 +88,11 @@ class ValidPieErrorSchema(ValidPieError):
 
     def getValue(self):
         """See ValidPieError"""
-        return None;
+        return None
 
     def getArguments(self, raw = True):
         """See ValidPieError"""
-        return {};
+        return {}
 
     def count(self):
         """Returns the number of errors."""
@@ -104,7 +104,7 @@ class ValidPieErrorSchema(ValidPieError):
 
     def getErrors(self):
         """Gets an list of all errors"""
-        return self.__errors;
+        return self.__errors
 
     def getNamedErrors(self):
         """Gets an dict of all named errors"""
@@ -112,7 +112,7 @@ class ValidPieErrorSchema(ValidPieError):
 
     def getNamedError(self, name):
         """return an ValidPieError if has error given name, otherwise None"""
-        return self.__namedErrors[name] if self.__namedErrors.has_key(name) else None;
+        return self.__namedErrors[name] if self.__namedErrors.has_key(name) else None
 
     def getGlobalErrors(self):
         """Gets an list of all global errors"""
@@ -120,4 +120,4 @@ class ValidPieErrorSchema(ValidPieError):
 
     def valid(self):
         """Returns true if the current error is valid"""
-        return True if self.count() < 1 else False;
+        return True if self.count() < 1 else False
