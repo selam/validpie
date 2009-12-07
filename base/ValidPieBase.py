@@ -43,21 +43,19 @@ class ValidPieBase(object):
 
         if len(self.getOptions()) > 0:
             invalidOptions = []
-            for item in options:
-                if item not in self.getOptions().keys() and item not in self.getRequiredOptions():
-                    invalidOptions.append(item)
+            for option, value in options.iteritems():
+                if option not in self.getOptions().keys() and option not in self.getRequiredOptions():
+                    invalidOptions.append(option)
             if len(invalidOptions) > 0:
                 raise InvalidArgumentException('%s does not support the following options "%s"' % (self.__class__.__name__, ', '.join(invalidOptions)))
 
         if len(self.getMessages()) > 0:
             invalidMessages = []
-            for item in messages:
-                if item not in self.getMessages():
-                  invalidMessages.append(item)
+            for code, message in messages.iteritems():
+                if code not in self.getMessages().keys():
+                  invalidMessages.append(code)
             if len(invalidMessages) > 0:
               raise InvalidArgumentException('%s does not support the following error codes "%s"' % (self.__class__.__name__, ', '.join(invalidMessages)))
-
-
 
         self.__options.update(options)
         self.__messages.update(messages)
