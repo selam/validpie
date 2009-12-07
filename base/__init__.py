@@ -9,6 +9,7 @@ from ValidPieBase import ValidPieBase
 from ValidPieError import ValidPieError
 from ValidPieErrorSchema import ValidPieErrorSchema
 from ValidPieSchema import ValidPieSchema
+from ValidString import ValidString
 
 if __name__ == '__main__':
   import unittest
