@@ -10,6 +10,8 @@ from ValidPieError import ValidPieError
 from ValidPieErrorSchema import ValidPieErrorSchema
 from ValidPieSchema import ValidPieSchema
 from ValidString import ValidString
+from ValidRegex import ValidRegex
+from ValidPass import ValidPass
 
 if __name__ == '__main__':
   import unittest
