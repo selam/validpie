@@ -106,7 +106,7 @@ class ValidPieBase(object):
 
     def hasOption(self, name):
         """Returns True if the option exists."""
-        return self.getOptions().has_key(name)
+        return True if self.getOptions().has_key(name) and self.getOptions().get(name) != None else False
 
     def setMessage(self, name, message):
         """Changes an error message given the error code."""
