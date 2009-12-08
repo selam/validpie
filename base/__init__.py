@@ -18,7 +18,7 @@ from ValidChoiceMany import ValidChoiceMany
 from ValidBoolen import ValidBoolen
 from ValidEmail import ValidEmail
 from ValidNumber import ValidNumber
-
+from ValidInteger import ValidInteger
 
 if __name__ == '__main__':
   import unittest
