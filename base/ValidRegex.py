@@ -4,21 +4,22 @@
 #
 # Copyright 2009 Sinelist
 
+import re
+
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 from ValidString import ValidString
 
 class ValidRegex(ValidString):
   def configure(self, options = {}, messages = {}):
-      super(ValidString, self).configure(options, messages)
+      ValidString.configure(self, options, messages)
       self.addRequiredOption('pattern')
 
 
   def doClean(self, value):
       clean = ValidString.doClean(self, value)
-      import re
-      matchResult = re.compile(self.getOption('pattern')).match(clean)
-      if not matchResult:
+
+      if not re.compile(self.getOption('pattern')).match(clean):
         raise ValidPieError(self, 'invalid', {'value': value})
 
       return clean;

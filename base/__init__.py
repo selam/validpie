@@ -13,6 +13,23 @@ from ValidString import ValidString
 from ValidRegex import ValidRegex
 from ValidPass import ValidPass
 
+from ValidUrl import ValidUrl
+from ValidChoice import ValidChoice
+from ValidChoiceMany import ValidChoiceMany
+from ValidBoolen import ValidBoolen
+from ValidEmail import ValidEmail
+from ValidNumber import ValidNumber
+
+M       ValidNumber.py
+M       ValidRegex.py
+A       ValidChoice.py
+M       __init__.py
+A       ValidBoolean.py
+A       ValidChoiceMany.py
+A       ValidEmail.py
+
+
+
 if __name__ == '__main__':
   import unittest
 
