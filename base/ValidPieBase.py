@@ -151,7 +151,7 @@ class ValidPieBase(object):
         """Sets the default required message"""
         self.setMessage('required', message)
 
-    def doClean(self, value):
+    def doClean(self, value = None):
         """Cleans the input value."""
         """Every subclass must implements this method."""
         raise NotImplementedError('doClean method must be implemented validators')
@@ -184,7 +184,7 @@ class ValidPieBase(object):
 
         return options
 
-    def clean(self, value):
+    def clean(self, value = None):
         """Cleans the input value.
            This method is also responsible for trimming the input value
            and checking the required option."""
