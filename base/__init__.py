@@ -12,15 +12,12 @@ from ValidPieSchema import ValidPieSchema
 from ValidString import ValidString
 from ValidRegex import ValidRegex
 from ValidPass import ValidPass
-
 from ValidUrl import ValidUrl
 from ValidChoice import ValidChoice
 from ValidChoiceMany import ValidChoiceMany
 from ValidBoolen import ValidBoolen
 from ValidEmail import ValidEmail
 from ValidNumber import ValidNumber
-
-
 
 
 if __name__ == '__main__':
