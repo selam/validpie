@@ -9,16 +9,16 @@ from ValidPieBase import ValidPieBase
 from ValidPieError import ValidPieError
 from ValidPieErrorSchema import ValidPieErrorSchema
 from ValidPieSchema import ValidPieSchema
-from ValidString import ValidString
-from ValidRegex import ValidRegex
-from ValidPass import ValidPass
-from ValidUrl import ValidUrl
-from ValidChoice import ValidChoice
-from ValidChoiceMany import ValidChoiceMany
-from ValidBoolen import ValidBoolen
-from ValidEmail import ValidEmail
-from ValidNumber import ValidNumber
-from ValidInteger import ValidInteger
+from ValidPieString import ValidPieString
+from ValidPieRegex import ValidPieRegex
+from ValidPiePass import ValidPiePass
+from ValidPieUrl import ValidPieUrl
+from ValidPieChoice import ValidPieChoice
+from ValidPieChoiceMany import ValidPieChoiceMany
+from ValidPieBoolen import ValidPieBoolen
+from ValidPieEmail import ValidPieEmail
+from ValidPieNumber import ValidPieNumber
+from ValidPieInteger import ValidPieInteger
 
 if __name__ == '__main__':
   import unittest

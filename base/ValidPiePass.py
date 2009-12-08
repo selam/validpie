@@ -7,7 +7,7 @@
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 
-class ValidPass(ValidPieBase):
+class ValidPiePass(ValidPieBase):
   def doClean(self, value):
     return value;
 

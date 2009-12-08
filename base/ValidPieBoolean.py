@@ -7,7 +7,7 @@
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 
-class ValidBoolean(ValidPieBase):
+class ValidPieBoolean(ValidPieBase):
   def configure(self, options = {}, messages = {}):
       self.addOption('true_values',  ('true', 't', 'yes', 'y', 'on', '1',True, 1));
       self.addOption('false_values', ('false', 'f', 'no', 'n', 'off', '0', False, None, 0));
@@ -28,7 +28,7 @@ if __name__ == '__main__':
   import unittest
   class TestValidBoolean(unittest.TestCase):
     def setUp(self):
-      self.__v = ValidBoolean();
+      self.__v = ValidPieBoolean();
 
     def testValidTrueValue(self):
       self.assertEqual(self.__v.clean('true'), True);

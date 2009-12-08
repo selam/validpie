@@ -8,16 +8,16 @@ import re
 
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
-from ValidString import ValidString
+from ValidPieString import ValidPieString
 
-class ValidRegex(ValidString):
+class ValidPieRegex(ValidPieString):
   def configure(self, options = {}, messages = {}):
       ValidString.configure(self, options, messages)
       self.addRequiredOption('pattern')
 
 
   def doClean(self, value):
-      clean = ValidString.doClean(self, value)
+      clean = ValidPieString.doClean(self, value)
 
       if not re.compile(self.getOption('pattern')).match(clean):
         raise ValidPieError(self, 'invalid', {'value': value})
@@ -28,7 +28,7 @@ if __name__ == '__main__':
   import unittest
   class TestValidRegex(unittest.TestCase):
         def setUp(self):
-          self.__v = ValidRegex({'pattern': r'deneme'}, {'invalid': 'invalid "%(value)s"'})
+          self.__v = ValidPieRegex({'pattern': r'deneme'}, {'invalid': 'invalid "%(value)s"'})
 
         def testValidValue(self):
           value = self.__v.clean('deneme');

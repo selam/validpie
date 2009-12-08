@@ -4,10 +4,10 @@
 #
 # Copyright 2009 Sinelist
 
-from ValidRegex import ValidRegex
+from ValidPieRegex import ValidPieRegex
 
 
-class ValidUrl(ValidRegex):
+class ValidPieUrl(ValidPieRegex):
   def configure(self, options = {}, messages = {}):
     options.update({
       'pattern': '^(https?|ftps|http|ftp?)://(([a-z0-9-]+\.)+[a-z]{2,6}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:[0-9]+)?($|/?|/\S+)$'
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
   class TestValidUrl(unittest.TestCase):
     def setUp(self):
-        self.__v = ValidUrl();
+        self.__v = ValidPieUrl();
 
     def testValidValue(self):
         self.assertEqual(self.__v.clean('http://www.sinelist.com/'), u'http://www.sinelist.com/')

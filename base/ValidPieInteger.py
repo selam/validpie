@@ -7,7 +7,7 @@
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 
-class ValidInteger(ValidPieBase):
+class ValidPieInteger(ValidPieBase):
 
   def configure(self, options ={}, messages = {}):
     self.addMessage('max', '"%(value)s" must be at most %(max)s.')
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
   class TestValidInteger(unittest.TestCase):
     def setUp(self):
-        self.__v = ValidInteger({'min': 1, 'max': 5}, {'invalid': 'invalid'});
+        self.__v = ValidPieInteger({'min': 1, 'max': 5}, {'invalid': 'invalid'});
 
     def testValidValue(self):
         self.assertEqual(self.__v.clean('1'), 1)

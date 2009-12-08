@@ -5,11 +5,11 @@
 # Copyright 2009 Sinelist
 
 
-from ValidChoice import ValidChoice
+from ValidPieChoice import ValidPieChoice
 
-class ValidChoiceMany(ValidChoice):
+class ValidChoiceMany(ValidPieChoice):
   def configure(self, options = {}, messages = {}):
-    ValidChoice.configure(self, options, messages)
+    ValidPieChoice.configure(self, options, messages)
     self.addOption('multiple', True)
 
 
@@ -20,10 +20,10 @@ if __name__ == '__main__':
   class TestValidChoiceMany(unittest.TestCase):
     def setUp(self):
       try:
-        self.__v = ValidChoiceMany();
+        self.__v = ValidPieChoiceMany();
       except Exception, e:
         self.assertEqual(e.getMessage(), 'ValidChoiceMany requires the following option: "choices"')
-      self.__v = ValidChoiceMany({'choices': ['a', 'b', 'c']});
+      self.__v = ValidPieChoiceMany({'choices': ['a', 'b', 'c']});
 
     def testValidTrueValue(self):
         self.assertEqual(self.__v.clean('a'), ['a'])

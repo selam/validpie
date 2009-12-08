@@ -41,10 +41,10 @@ if __name__ == '__main__':
   class TestValidChoice(unittest.TestCase):
     def setUp(self):
       try:
-        self.__v = ValidChoice();
+        self.__v = ValidPieChoice();
       except Exception, e:
         self.assertEqual(e.getMessage(), 'ValidChoice requires the following option: "choices"')
-      self.__v = ValidChoice({'choices': ['a', 'b', 'c']});
+      self.__v = ValidPieChoice({'choices': ['a', 'b', 'c']});
 
     def testValidTrueValue(self):
         self.assertEqual(self.__v.clean('a'), 'a')

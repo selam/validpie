@@ -7,7 +7,7 @@
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 
-class ValidString(ValidPieBase):
+class ValidPieString(ValidPieBase):
   def configure(self, options = {}, messages = {}):
     self.addMessage('max_length', '"%(value)s" is too long (%(max_length)s characters max).')
     self.addMessage('min_length', '"%(value)s" is too short (%(min_length)s characters min).')
@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
   class TestValidString(unittest.TestCase):
         def setUp(self):
-          self.__v = ValidString({'required': True, 'min_length': 5, 'max_length': 15}, {'invalid': 'invalid value', 'min_length': 'value too short', 'max_length': 'value too long'});
+          self.__v = ValidPieString({'required': True, 'min_length': 5, 'max_length': 15}, {'invalid': 'invalid value', 'min_length': 'value too short', 'max_length': 'value too long'});
 
         def testTooShortValue(self):
           try:

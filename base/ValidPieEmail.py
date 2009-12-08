@@ -5,14 +5,14 @@
 # Copyright 2009 Sinelist
 
 
-from ValidRegex import ValidRegex
+from ValidPieRegex import ValidPieRegex
 
-class ValidEmail(ValidRegex):
+class ValidEmail(ValidPieRegex):
   def configure(self, options = {}, messages = {}):
     options.update({
       'pattern': '^.+\\@(\\[?)[a-zA-Z1-9\\-\\.]+\\.([a-zA-Z]{2,4})(\\]?)$'
     })
-    ValidRegex.configure(self, options, messages)
+    ValidPieRegex.configure(self, options, messages)
 
 
 if __name__ == '__main__':
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
   class TestValidEmail(unittest.TestCase):
     def setUp(self):
-        self.__v = ValidEmail();
+        self.__v = ValidPieEmail();
 
     def testValidValue(self):
         self.assertEqual(self.__v.clean('timu@sinelist.com'), 'timu@sinelist.com')
