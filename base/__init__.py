@@ -20,13 +20,6 @@ from ValidBoolen import ValidBoolen
 from ValidEmail import ValidEmail
 from ValidNumber import ValidNumber
 
-M       ValidNumber.py
-M       ValidRegex.py
-A       ValidChoice.py
-M       __init__.py
-A       ValidBoolean.py
-A       ValidChoiceMany.py
-A       ValidEmail.py
 
 
 
