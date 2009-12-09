@@ -19,6 +19,8 @@ from ValidPieBoolen import ValidPieBoolen
 from ValidPieEmail import ValidPieEmail
 from ValidPieNumber import ValidPieNumber
 from ValidPieInteger import ValidPieInteger
+from ValidPieDate import ValidPieDate
+from ValidPieDateTime import ValidPieDateTime
 
 if __name__ == '__main__':
   import unittest
