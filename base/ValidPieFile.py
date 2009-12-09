@@ -65,7 +65,7 @@ class ValidPieFile(ValidPieBase):
           if mimeType not in mimeTypes:
             raise ValidPieError(self, 'mime_types', {'mime_types' : mimeTypes, 'mime_type' :mimeType})
 
-        return True;
+        return value;
 
     def getMimeTypesFromCategory(self, category):
         categories = self.getOption('mime_categories')
