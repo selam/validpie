@@ -22,11 +22,11 @@ class ValidPieDate(ValidPieBase):
         self.addOption('date_format', None)
         self.addOption('with_time', False)
         self.addOption('date_output', '%Y-%m-%d')
-        self.addOption('datetime_output', '%Y-%m-%d %H:%i:%s')
+        self.addOption('datetime_output', '%Y-%m-%d %H:%M:%S')
         self.addOption('date_format_error')
         self.addOption('min', None)
         self.addOption('max', None)
-        self.addOption('date_format_range_error', '%d/%m/%Y %H:%i:%s')
+        self.addOption('date_format_range_error', '%d/%m/%Y %H:%M:%S')
 
     def doClean(self, value):
         if isinstance(value, (dict)):
@@ -56,7 +56,6 @@ class ValidPieDate(ValidPieBase):
 
     def convertDateDictToTimestamp(self, value):
         for key in ['year', 'month', 'day', 'hour', 'minute', 'second']:
-
           if value.has_key(key)  and value[key] is not None and re.compile('^\d+').match(str(value[key])) is None:
               raise ValidPieError(self, 'invalid', {'value' : value})
 
