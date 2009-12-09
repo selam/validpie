@@ -26,7 +26,7 @@ class ValidPieFile(ValidPieBase):
         self.addOption('max_size')
         self.addOption('mime_types')
         self.addOption('mime_type_guessers', [
-          [self, 'guessFromFileinfo']
+          [self, 'guessWithMagicCookie']
         ])
 
         self.addOption('mime_categories', {
@@ -84,7 +84,7 @@ class ValidPieFile(ValidPieBase):
         return defaultMimeType;
 
 
-    def guessFromFileinfo(self, filePath):
+    def guessWithMagicCookie(self, filePath):
 
         if useMagic:
           mimeType =  ms.file(filePath)
