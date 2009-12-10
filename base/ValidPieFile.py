@@ -65,6 +65,8 @@ class ValidPieFile(ValidPieBase):
           if mimeType not in mimeTypes:
             raise ValidPieError(self, 'mime_types', {'mime_types' : mimeTypes, 'mime_type' :mimeType})
 
+        value.update({'type': mimeType})
+
         return value;
 
     def getMimeTypesFromCategory(self, category):
@@ -93,22 +95,3 @@ class ValidPieFile(ValidPieBase):
         return None;
 
 
-if __name__ == '__main__':
-  import unittest
-  class testValidFile(unittest.TestCase):
-    def setUp(self):
-        self.__v = ValidPieFile({'mime_types': 'web_images'});
-
-    def testValidValues(self):
-        self.assertEqual(self.__v.clean({'tmp_name': 'fixtures/validimage.jpg'}), True)
-
-    def testInvalidValues(self):
-        try:
-          self.assertEqual(self.__v.clean({'tmp_name': 'fixtures/invalid.jpg'}), True)
-          self.fail('invalid image should not return true value')
-        except ValidPieError, e:
-          self.assertEqual(e.getMessage(), 'Invalid mime type "text/plain".')
-
-
-  suite = unittest.TestLoader().loadTestsFromTestCase(testValidFile)
-  unittest.TextTestRunner(verbosity=2).run(suite)

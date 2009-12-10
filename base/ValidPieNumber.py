@@ -34,17 +34,3 @@ class ValidPieNumber(ValidPieBase):
       raise ValidPieError(self, 'min', {'value' : value, 'min' : self.getOption('min')});
 
     return clean;
-if __name__ == '__main__':
-  import unittest
-  class TestValidNumber(unittest.TestCase):
-      def setUp(self):
-        self.__v = ValidPieNumber();
-
-      def testValidValue(self):
-        self.assertEqual(self.__v.clean('1'), 1.0)
-        self.assertEqual(self.__v.clean(1), 1.0)
-        self.assertEqual(self.__v.clean(0), 0.0)
-        self.assertEqual(self.__v.clean(2), 2.0)
-
-  suite = unittest.TestLoader().loadTestsFromTestCase(TestValidNumber)
-  unittest.TextTestRunner(verbosity=2).run(suite)

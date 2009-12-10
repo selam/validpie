@@ -12,7 +12,7 @@ from ValidPieString import ValidPieString
 
 class ValidPieRegex(ValidPieString):
   def configure(self, options = {}, messages = {}):
-      ValidString.configure(self, options, messages)
+      ValidPieString.configure(self, options, messages)
       self.addRequiredOption('pattern')
 
 
@@ -23,23 +23,3 @@ class ValidPieRegex(ValidPieString):
         raise ValidPieError(self, 'invalid', {'value': value})
 
       return clean;
-
-if __name__ == '__main__':
-  import unittest
-  class TestValidRegex(unittest.TestCase):
-        def setUp(self):
-          self.__v = ValidPieRegex({'pattern': r'deneme'}, {'invalid': 'invalid "%(value)s"'})
-
-        def testValidValue(self):
-          value = self.__v.clean('deneme');
-          self.assertEqual(value, u'deneme')
-
-        def testInvalidValue(self):
-          try:
-            value = self.__v.clean('sarkimi soylerken');
-            self.fail('fail if not match')
-          except ValidPieError, e:
-            self.assertEqual(e.getMessage(), u'invalid "sarkimi soylerken"')
-
-  suite = unittest.TestLoader().loadTestsFromTestCase(TestValidRegex)
-  unittest.TextTestRunner(verbosity=2).run(suite)
