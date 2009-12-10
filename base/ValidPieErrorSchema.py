@@ -22,15 +22,18 @@ class ValidPieErrorSchema(ValidPieError):
 
 
     def addErrors(self, errors):
-        """Adds an dict or ValidPieErrorSchema of errors"""
+        """Adds an dict, list or ValidPieErrorSchema of errors"""
         if isinstance(errors, (ValidPieErrorSchema)):
             for error in errors.getGlobalErrors():
                 self.addError(error)
             for name, error in errors.getNamedErrors().iteritems():
                 self.addError(error, name)
-        else:
+        elif isinstance(errors, (dict)):
           for name, error in errors.iteritems():
               self.addError(error, name)
+        elif isinstance(errors, (dict)):
+          for error in errors:
+            self.addErropr(error)
 
     def addError(self, error, name = None):
         """Adds an error."""
