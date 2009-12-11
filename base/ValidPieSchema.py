@@ -107,6 +107,20 @@ class ValidPieSchema(ValidPieBase):
     def isValid(self):
       return False if self.__errorSchema.count() > 0 else True
 
+    def getErrorMessage(self, field):
+      """return error message given name"""
+      error = self.__errorSchema.getNamedError(field)
+      if error:
+        return error.getMessage()
+      return None
+
+    def getErrorCode(self, field):
+      """return error code given name"""
+      error = self.__errorSchema.getNamedError(field)
+      if error:
+        return error.getCode()
+      return None
+
     def getValue(self, name):
       """Gets validated value of given name"""
       return self.__cleanedValues[name] if self.__cleanedValues.has_key(name) else None
