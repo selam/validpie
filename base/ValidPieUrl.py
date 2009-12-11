@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#
+# This module is part of ValidPie
 # Copyright 2009 Sinelist
 
-from ValidPieRegex import ValidPieRegex
+__author__ = 'Timu Eren<timu@sinelist.com>'
 
+from ValidPieRegex import ValidPieRegex
 
 class ValidPieUrl(ValidPieRegex):
   def configure(self, options = {}, messages = {}):

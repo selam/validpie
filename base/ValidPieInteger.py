@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#
+# This module is part of ValidPie
 # Copyright 2009 Sinelist
+
+__author__ = 'Timu Eren<timu@sinelist.com>'
 
 from ValidPieError import ValidPieError
 from ValidPieBase import ValidPieBase
 
 class ValidPieInteger(ValidPieBase):
-
   def configure(self, options ={}, messages = {}):
     self.addMessage('max', '"%(value)s" must be at most %(max)s.')
     self.addMessage('min', '"%(value)s" must be at least %(min)s.')
@@ -17,7 +18,6 @@ class ValidPieInteger(ValidPieBase):
     self.addOption('max');
 
     self.setMessage('invalid', '"%(value)s" is not an integer.')
-
 
   def doClean(self, value):
     try:
