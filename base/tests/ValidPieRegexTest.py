@@ -16,11 +16,12 @@ from ValidPieError import ValidPieError
 import unittest
 class ValidPieRegexTest(unittest.TestCase):
     def setUp(self):
-      self.__v = ValidPieRegex({'pattern': r'deneme'}, {'invalid': 'invalid "%(value)s"'})
+      self.__v = ValidPieRegex({'pattern': '[deneme]'}, {'invalid': 'invalid "%(value)s"'})
 
     def testValidValue(self):
-      value = self.__v.clean('deneme');
-      self.assertEqual(value, u'deneme')
+      self.assertEqual(self.__v.clean('deneme'), u'deneme')
+      self.__v.setOption('pattern', '.* şarkısı')
+      self.assertEqual(self.__v.clean('test şarkısı'), u'test şarkısı')
 
     def testInvalidValue(self):
       try:

@@ -26,11 +26,10 @@ class ValidPieString(ValidPieBase):
           value = str(value)
         elif isinstance(value, (list, tuple, dict, None)):
           raise ValidPieError(self, 'invalid', {'value': value})
-
       try:
-        clean=unicode(str(value), 'UTF-8')
+        clean = unicode(str(value), 'UTF-8')
       except UnicodeEncodeError, e:
-        clean =  str(value)
+        clean = value
 
       if self.hasOption('max_length') and len(clean) > self.getOption('max_length'):
          raise ValidPieError(self, 'max_length', {'value': clean, 'max_length': self.getOption('max_length')})

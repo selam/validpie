@@ -12,6 +12,7 @@ import bootstrap
 from ValidPieBoolean import ValidPieBoolean
 from ValidPieError import ValidPieError
 
+
 class ValidPieBooleanTest(unittest.TestCase):
   def setUp(self):
     self.__v = ValidPieBoolean();

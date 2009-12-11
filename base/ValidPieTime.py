@@ -6,6 +6,7 @@
 
 __author__ = 'Timu Eren<timu@sinelist.com>'
 
+import re
 import time
 
 from ValidPieBase import ValidPieBase
@@ -20,7 +21,7 @@ class ValidPieTime(ValidPieBase):
         self.addOption('time_format_error');
 
     def doClean(self, value):
-        if not isinstance(value, (dict)):
+        if isinstance(value, (dict)):
           clean = self.convertTimeDictToTimestamp(value)
         elif self.hasOption('time_format'):
           try:
@@ -29,9 +30,9 @@ class ValidPieTime(ValidPieBase):
             raise ValidPieError(self, 'invalid', {'value': value})
 
           clean = self.convertTimeDictToTimestamp({
-            'hour': value.hour,
-            'second': value.second,
-            'minute': value.minute
+            'hour': value.tm_hour,
+            'second': value.tm_sec,
+            'minute': value.tm_min
           });
         else:
           try:
@@ -41,18 +42,28 @@ class ValidPieTime(ValidPieBase):
           except ValueError:
             raise ValidPieError(self, 'invalid', {'value': value})
 
-        return clean if clean == self.getEmptyValue() else  time.strftime(clean, self.getOption('time_output'));
+        return clean if clean == self.getEmptyValue() else  time.strftime(self.getOption('time_output'), time.localtime(clean));
 
     def convertTimeDictToTimestamp(self, value):
         for key in ('hour', 'minute', 'second'):
-            if value.has_key(key)  and value[key] is not None and re.compile('^\d+').match(str(value[key])) is None:
+            if value.has_key(key)  and value[key] is not None and value[key] != '' and re.compile('^\d+').match(str(value[key])) is None:
                 raise ValidPieError(self, 'invalid', {'value' : value})
+
+        if not self.isValueSet(value, 'second') and not self.isValueSet(value, 'minute') and not self.isValueSet(value, 'hour'):
+            if self.getOption('required'):
+                raise ValidPieError(self, 'required', {'value' : value})
+            else:
+              return self.getEmptyValue()
 
         if (self.isValueSet(value, 'second') and \
               (self.isValueSet(value, 'minute') == False or self.isValueSet(value, 'hour') == False)) or  \
               (self.isValueSet(value, 'minute') and self.isValueSet(value, 'hour') == False):
               raise ValidPieError(self, 'invalid', {'value': value})
-        return int(time.mktime((0, 0, 0, int(value['hour']) if value.has_key('hour') else 0, int(value['minute']) if value.has_key('minute') else 0, int(value['second']) if value.has_key('second') else 0, 0, 0, -1)))
+
+        return int(time.mktime((0, 0, 0, self.getValue(value, 'hour'), self.getValue(value, 'minute'), self.getValue(value, 'second'), 0, 0, -1)))
+
+    def getValue(self, values, key):
+        return int(values[key]) if values.has_key(key) and values[key] not in (None, '') else 0
 
     def isValueSet(self, values, key):
         return True if values.has_key(key) and values[key] not in (None, '') else False

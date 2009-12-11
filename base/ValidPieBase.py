@@ -97,14 +97,14 @@ class ValidPieBase(object):
 
     def addOption(self, option, value = None):
         """Adds a new option value with a default value."""
-        self.__options[option] = value
+        self.__options[option] =  unicode(value, 'UTF-8') if isinstance(value, (str)) else value
 
     def setOption(self, name, value):
         """Changes an option value."""
         if name not in self.getOptions() and name not in self.getRequiredOptions():
           raise InvalidArgumentException('%s does not support the following option: "%s"' % (self.__class__.__name__, name))
 
-        self.addOption(name, value)
+        self.addOption(name, unicode(value, 'UTF-8') if isinstance(value, (str)) else value)
 
     def hasOption(self, name):
         """Returns True if the option exists."""
