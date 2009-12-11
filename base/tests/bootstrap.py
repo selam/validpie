@@ -6,6 +6,6 @@
 
 __author__ = 'Timu Eren<timu@sinelist.com>'
 
-
 import sys
+
 sys.path.append('..')
