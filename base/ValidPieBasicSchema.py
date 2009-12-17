@@ -7,9 +7,7 @@
 __author__ = 'Timu Eren<timu@sinelist.com>'
 
 from ValidPieSchema import ValidPieSchema
-
 """
-
 # in validators module
 
 from validators.base import ValidPieBasicSchema
@@ -22,7 +20,7 @@ class FooValidatorSchema(ValidPieBasicSchema):
 
 # in actions
 
-def GET(self):
+def get(self):
     validatorSchema = FooValidatorSchema({
                         'foo': self.get_argument('foo')
                       });
@@ -32,7 +30,6 @@ def GET(self):
       self.write({'status': 'error', 'code': validatorSchema.getErrorCode('foo'), 'message': validatorSchema.getErrorMessage('foo')})
 
 """
-
 class ValidPieBasicSchema(ValidPieSchema):
       def __init__(self, values = {}, options = {}, messages = {}):
           ValidPieSchema.__init__(self, options, messages)

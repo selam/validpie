@@ -11,6 +11,7 @@ from ValidPieBase import ValidPieBase
 from ValidPieError import ValidPieError
 from ValidPieErrorSchema import ValidPieErrorSchema
 from ValidPieSchema import ValidPieSchema
+from ValidPieBasicSchema import ValidPieBasicSchema
 from ValidPieString import ValidPieString
 from ValidPieRegex import ValidPieRegex
 from ValidPiePass import ValidPiePass
