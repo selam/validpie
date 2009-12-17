@@ -19,11 +19,13 @@ class ValidPieRegexTest(unittest.TestCase):
       self.__v = ValidPieRegex({'pattern': '[deneme]'}, {'invalid': 'invalid "%(value)s"'})
 
     def testValidValue(self):
+      self.__v.setOption('match', False);
       self.assertEqual(self.__v.clean('deneme'), u'deneme')
-      self.__v.setOption('pattern', '.* şarkısı')
+      self.__v.setOption('pattern', 'şarkısı')
       self.assertEqual(self.__v.clean('test şarkısı'), u'test şarkısı')
 
     def testInvalidValue(self):
+      self.__v.setOption('match', True);
       try:
         value = self.__v.clean('sarkimi soylerken');
         self.fail('fail if not match')
