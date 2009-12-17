@@ -89,8 +89,8 @@ class ValidPieSchema(ValidPieBase):
       validator = self.getPreValidPie()
 
       if validator is None:
-        return None
-      validator.clean(values)
+        return values
+      return validator.clean(values)
 
     def getFields(self):
         """Returns an dict of fields."""
@@ -101,8 +101,8 @@ class ValidPieSchema(ValidPieBase):
       validator = self.getPostValidPie()
 
       if validator is None:
-        return None
-      validator.clean(values)
+        return values
+      return validator.clean(values)
 
     def isValid(self):
       return False if self.__errorSchema.count() > 0 else True
