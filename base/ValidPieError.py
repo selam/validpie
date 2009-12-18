@@ -17,7 +17,10 @@ class ValidPieError(Exception):
         if messageFormat is None:
           messageFormat = errorCode
 
-        self.__message = messageFormat % arguments
+        if not isinstance(messageFormat, int):
+          self.__message = messageFormat % arguments
+        else:
+          self.__message = messageFormat
 
     def getValue(self):
         """Returns the input value that triggered this error."""
