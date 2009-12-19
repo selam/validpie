@@ -32,9 +32,9 @@ class ValidPieErrorSchema(ValidPieError):
         elif isinstance(errors, (dict)):
           for name, error in errors.iteritems():
               self.addError(error, name)
-        elif isinstance(errors, (dict)):
+        elif isinstance(errors, (list)):
           for error in errors:
-            self.addErropr(error)
+            self.addError(error)
 
     def addError(self, error, name = None):
         """Adds an error."""
@@ -51,7 +51,8 @@ class ValidPieErrorSchema(ValidPieError):
           else:
             if not self.__namedErrors.has_key(name):
                 self.__namedErrors[name] = ValidPieErrorSchema(error.getValidPie())
-                self.__errors.append(error)
+                # fix ???
+                #self.__errors.append(error)
             elif not isinstance(self.__namedErrors[name], (ValidPieErrorSchema)):
                 current = self.__namedErrors[name]
                 self.__namedErrors[name] = ValidPieErrorSchema(current.getValidPie())
@@ -71,10 +72,10 @@ class ValidPieErrorSchema(ValidPieError):
         _namedErrors = []
 
         for error in self.getGlobalErrors():
-          _globalErrors.append(error.getCode())
+          _globalErrors.append(str(error.getCode()))
 
         for name, error in self.getNamedErrors().iteritems():
-            _namedErrors.append('%s [%s]' % (name, error.getCode()))
+            _namedErrors.append('%s [%s]' % (str(name), str(error.getCode())))
         ValidPieError.setCode(self, '%s %s' % (' '.join(_globalErrors), ' '.join(_namedErrors)))
 
     def updateMessage(self):
@@ -82,10 +83,10 @@ class ValidPieErrorSchema(ValidPieError):
         _globalErrors = []
         _namedErrors = []
         for error in self.getGlobalErrors():
-          _globalErrors.append(error.getMessage())
+          _globalErrors.append(str(error.getMessage()))
 
         for name, error in self.getNamedErrors().iteritems():
-            _namedErrors.append('%s [%s]' % (name, error.getMessage()))
+            _namedErrors.append('%s [%s]' % (str(name), str(error.getMessage())))
 
         ValidPieError.setMessage(self, '%s %s' % (' '.join(_globalErrors), ' '.join(_namedErrors)))
 
