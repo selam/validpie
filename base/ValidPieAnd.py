@@ -23,7 +23,7 @@ class ValidPieAnd(ValidPieBase):
         elif validators is None:
           raise InvalidArgumentException('ValidPieAnd constructor takes a ValidPieBase object, or a ValidPieBase list/dict')
 
-        ValidPieAnd.__init__(self, options, messages);
+        ValidPieBase.__init__(self, options, messages);
 
 
     def configure(self, options = {}, messages = {}):
