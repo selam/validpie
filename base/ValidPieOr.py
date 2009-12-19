@@ -11,7 +11,7 @@ from ValidPieBase import ValidPieBase
 from ValidPieError import ValidPieError
 
 class ValidPieOr(ValidPieBase):
-      def __init__(self, validators = None, options = {}, messages = {}):
+   def __init__(self, validators = None, options = {}, messages = {}):
           self.__validators = []
           if isinstance(validators, (ValidPieBase)):
              self.addValidator(validators)
@@ -44,7 +44,7 @@ class ValidPieOr(ValidPieBase):
         for validator in self.getValidators():
           try:
             return validator.clean(clean);
-          except ValidPieError, e
+          except ValidPieError, e:
             errors.append(e)
 
         if self.getMessage('invalid'):
