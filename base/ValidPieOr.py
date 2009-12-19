@@ -35,7 +35,7 @@ class ValidPieOr(ValidPieBase):
 
     def getValidators(self):
         """Gets all validators"""
-        self.__validators;
+        return self.__validators;
 
     def doClean(self, value):
         clean = value
