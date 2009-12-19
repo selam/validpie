@@ -48,7 +48,7 @@ class ValidPieAnd(ValidPieBase):
         for validator in self.getValidators():
           try:
             clean = validator.clean(clean);
-          except ValidPieError, e
+          except ValidPieError, e:
             errors.append(e)
             if self.getOption('halt_on_error'):
               break;
