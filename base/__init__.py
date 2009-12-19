@@ -24,6 +24,7 @@ from ValidPieNumber import ValidPieNumber
 from ValidPieInteger import ValidPieInteger
 from ValidPieDate import ValidPieDate
 from ValidPieDateTime import ValidPieDateTime
-
+from ValidPieOr import ValidPieOr
+from ValidPieAnd import ValidPieAnd
 
 __all__ = sorted(name for name, obj in locals().items())
