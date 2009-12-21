@@ -19,7 +19,7 @@ class ValidPieChoice(ValidPieBase):
     def doClean(self, value):
         choices = self.getOption('choices')
 
-        if isinstance(choices, collections.Callable) or hasattr(choices, '__call__'):
+        if hasattr(choices, '__call__'):
           choices = choices();
 
         if self.getOption('multiple'):
