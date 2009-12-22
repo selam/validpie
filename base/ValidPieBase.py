@@ -36,7 +36,7 @@ class ValidPieBase(object):
             raise InvalidArgumentException('%s requires the following option: "%s"' % (self.__class__.__name__, ', '.join(self.getRequiredOptions())))
           invalidOptions = []
           for item in options:
-              if item not in self.getRequiredOptions():
+              if item not in self.getRequiredOptions() and item not in self.getOptions().keys():
                   invalidOptions.append(item)
 
           if len(invalidOptions) > 0:
