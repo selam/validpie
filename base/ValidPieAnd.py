@@ -51,7 +51,7 @@ class ValidPieAnd(ValidPieBase):
           except ValidPieError, e:
             errors.append(e)
             if self.getOption('halt_on_error'):
-              break;
+              break
         if len(errors) > 0:
           if self.getMessage('invalid'):
             raise ValidPieError(self, 'invalid', {'value': value})
