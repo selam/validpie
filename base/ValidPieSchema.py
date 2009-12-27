@@ -170,7 +170,7 @@ class ValidPieSchema(ValidPieBase):
 
       # are non given values required?
       try:
-        for name in unused.iteritems():
+        for name, value in unused.iteritems():
           self.__cleanedValues[name] = self.__fields[name].clean(None)
       except ValidPieError, e:
           self.__cleanedValues[name] = None
