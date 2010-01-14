@@ -116,7 +116,7 @@ class ValidPieBase(object):
             raise InvalidArgumentException('%s does not support the following error code: "%s"' %  (self.__class__.__name__, name))
         self.addMessage(name, message)
 
-    def addMessage(self, name, message):
+    def addMessage(self, name, message=None):
         """Adds a new error code with a default error message."""
         self.__messages[name] = message
 
