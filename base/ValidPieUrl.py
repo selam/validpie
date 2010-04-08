@@ -16,4 +16,3 @@ class ValidPieUrl(ValidPieRegex):
 
     ValidPieRegex.configure(self, options, messages)
 
-print ValidPieUrl({'reqired': True}).clean('http://www.sinelist.com/callback.php#falanca')
