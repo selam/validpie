@@ -35,4 +35,5 @@ class ValidPieBasicSchema(ValidPieSchema):
           ValidPieSchema.__init__(self, options, messages)
           self.clean(values)
 
-
+      def __getitem__(self, name):
+	return self.getValue(name)
